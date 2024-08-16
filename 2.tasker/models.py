@@ -23,8 +23,8 @@ class Task(db.Model):
 
     # Function to remove task
     def delete(id) -> None:
-        task = Task.query.get(id)
-        
+        task = Task.query.get({"id": id})
+
         if (task != None):
             db.session.delete(task)
             db.session.commit()
