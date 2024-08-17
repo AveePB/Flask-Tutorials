@@ -1,0 +1,114 @@
+/* styles.css */
+
+/* General body styling */
+body {
+    background-color: #1c1c1c; /* Dark background for a cyberpunk feel */
+    color: #e0e0e0; /* Light gray text for contrast */
+    font-family: 'Arial', sans-serif; /* Modern font */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styling */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(145deg, #2e2e2e, #1c1c1c); /* Dark gradient for depth */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow for 3D effect */
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00bfff; /* Neon blue for a striking look */
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #d3d3d3; /* Light gray label text */
+}
+
+input[type="file"], 
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #333; /* Dark border for inputs */
+    background-color: #2e2e2e; /* Dark input background */
+    color: #e0e0e0; /* Light text for inputs */
+    border-radius: 5px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background: #00bfff; /* Neon blue button for file uploads */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    color: #000000; /* Light text color */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+button.download {
+    background-color: #00bfff; /* Neon blue for download button */
+    box-shadow: 0 4px 8px rgba(0, 191, 255, 0.5); /* Light blue shadow */
+}
+
+button.delete {
+    background-color: #ff4c4c; /* Bright red for delete button */
+    box-shadow: 0 4px 8px rgba(255, 76, 76, 0.5); /* Red shadow */
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Table styling */
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #2e2e2e; /* Dark background for table */
+    color: #e0e0e0; /* Light text color */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.file-table th, 
+.file-table td {
+    border: 1px solid #333; /* Dark border */
+    padding: 10px;
+}
+
+.file-table th {
+    background-color: #1a1a1a; /* Darker header background */
+    color: #00bfff; /* Neon blue for headers */
+}
+
+.file-table td {
+    text-align: left;
+}
+
+.file-name {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
