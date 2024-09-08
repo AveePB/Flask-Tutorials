@@ -1,0 +1,79 @@
+/* Essential Custom Styling */
+.form-container {
+    background-color: #fff; /* White background for the form */
+    border-radius: 15px; /* More rounded corners */
+    padding: 30px; /* Increase padding for more space */
+    width: 400px; /* Increase width of form */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly larger shadow for depth */
+    margin: 120px auto; /* Center the form with more margin */
+}
+
+.form-container h2 {
+    color: #063063; /* Dark blue for the heading */
+    text-align: center; /* Center the heading text */
+    font-size: 26px; /* Larger font size */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increase space between form fields */
+}
+
+.form-container label {
+    color: #000; /* Black text for labels */
+    font-size: 16px; /* Larger label font size */
+}
+
+.form-container input {
+    width: 100%; /* Full width inputs */
+    padding: 15px; /* Increase padding inside inputs */
+    border: 1px solid #d1a94f; /* Curry color for input borders */
+    border-radius: 8px; /* More rounded corners */
+    font-size: 16px; /* Larger input font size */
+    box-sizing: border-box; /* Make sure padding doesn't affect input width */
+}
+
+.form-container button {
+    width: 100%; /* Full width button */
+    background-color: #063063; /* Dark blue background */
+    color: #fff; /* White text */
+    padding: 15px; /* Increase padding inside button */
+    font-size: 18px; /* Larger button font size */
+    border: none; /* No border */
+    border-radius: 8px; /* More rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 10px; /* Add space above the button */
+}
+
+.form-container button:hover {
+    background-color: #000; /* Black background on hover */
+}
+
+/* Styles for Message Box */
+.message-box {
+    display: none; /* Hide by default */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.message-box.success {
+    background-color: #4caf50; /* Green for success */
+}
+
+.message-box.error {
+    background-color: #f44336; /* Red for error */
+}
+
+/* Styles for link*/
+.link-text {
+    text-align: center; /* Center align the link text */
+    margin-top: 20px; /* Space above the link */
+}
+
+.link-text a {
+    color: #063063; /* Dark blue link color */
+    text-decoration: none; /* Remove underline */
+}
