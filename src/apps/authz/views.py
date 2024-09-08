@@ -58,7 +58,7 @@ class LoginView(APIView):
                 return Response({'message': 'Invalid credentials.'}, status.HTTP_400_BAD_REQUEST)
 
         # Form doesn't match criteria    
-        return Response(form.errors.as_text(), status.HTTP_400_BAD_REQUEST)
+        return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -91,7 +91,7 @@ class RegisterView(APIView):
                 return Response({'message': 'User already exists.'}, status.HTTP_409_CONFLICT)
 
         # Form doesn't match criteria    
-        return Response(form.errors.as_text(), status.HTTP_400_BAD_REQUEST)
+        return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
