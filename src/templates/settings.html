@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}That's It - Settings{% endblock %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'settings/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="settings-container">
+
+    <!-- Profile Data Section -->
+    <div class="profile-data-container">
+        <h2>Profile Data</h2>
+
+        <!-- Avatar Section -->
+        <div class="avatar-section section">
+            <h3>Update Avatar</h3>
+            <div class="current-avatar-container">
+                <img src="{{ avatar_url }}" alt="Current Avatar" class="avatar-preview">
+                <div class="current-avatar-text">(Current Avatar)</div>
+            </div>
+
+            <!-- Form for Updating Avatar -->
+            <form action="/accounts/avatar/" method="POST" enctype="multipart/form-data" class="form-container" data-message-box="avatar-message-box">
+                <div class="form-group">
+                    <label for="avatar">New Avatar:</label>
+                    <input type="file" id="avatar" name="file" required>
+                </div>
+                <button type="submit" class="submit-btn">Upload New Avatar</button>
+            </form>
+
+            <!-- Form for Deleting Avatar -->
+            <button id="delete-avatar-btn" class="delete-btn">Delete Avatar</button>
+            <div id="avatar-message-box" class="message-box"></div>
+        </div>
+
+        <!-- Bio Section -->
+        <div class="bio-section section">
+            <h3>Update Bio</h3>
+            <div class="current-bio-container">
+                <p class="current-bio-text">{{ user.bio }}</p>
+                <div class="current-bio-label">(Current Bio)</div>
+            </div>
+        
+            <!-- Form for Updating Bio -->
+            <form action="/accounts/bio/" method="POST" class="form-container" data-message-box="bio-message-box">
+                <div class="form-group">
+                    <label for="bio">New Bio:</label>
+                    <textarea id="bio" name="bio" rows="4">{{ user.bio }}</textarea>
+                </div>
+                <button type="submit" class="submit-btn">Update Bio</button>
+            </form>
+        
+            <!-- Form for Deleting Bio -->
+            <button id="delete-bio-btn" class="delete-btn">Delete Bio</button>
+            <div id="bio-message-box" class="message-box"></div>
+        </div>
+    </div>
+
+    <!-- Account Data Section -->
+    <div class="account-data-container">
+        <h2>Account Data</h2>
+
+        <!-- Username Section -->
+        <div class="username-section section">
+            <h3>Update Username</h3>
+            <div class="current-username-container">
+                <p class="current-username-text">{{ user.username }}</p>
+                <div class="current-username-label">(Current Username)</div>
+            </div>
+        
+            <!-- Form for Updating Username -->
+            <form action="/accounts/username/" method="POST" class="form-container" data-message-box="username-message-box">
+                <div class="form-group">
+                    <label for="username">New Username:</label>
+                    <input type="text" id="username" name="username" value="{{ user.username }}" required>
+                </div>
+                <button type="submit" class="submit-btn">Update Username</button>
+            </form>
+            <div id="username-message-box" class="message-box"></div>
+        </div>
+
+        <!-- Password Section -->
+        <div class="password-section section">
+            <h3>Update Password</h3>
+            <form action="/accounts/password/" method="POST" class="form-container" data-message-box="password-message-box">
+                <div class="form-group">
+                    <label for="password">New Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn">Update Password</button>
+            </form>
+            <div id="password-message-box" class="message-box"></div>
+        </div>
+    </div>
+
+</div>
+{% load static %}
+<script src="{% static 'settings/script.js' %}"></script>
+{% endblock %}
