@@ -53,21 +53,3 @@ class User(AbstractBaseUser):
     def __str__(self) -> str:
         return f"User<{self.username}>"
     
-class Network(models.Model):
-    user = models.ForeignKey(User, related_name='followed', on_delete=models.CASCADE, null=False)
-    follower = models.ForeignKey(User, related_name='following', on_delete=models.CASCADE, null=False)
-
-    class Meta:
-        unique_together = ('user', 'follower')  # Ensures that user can't be followed twice
-
-    def __str__(self):
-        return f' {self.follower} is following the {self.user}'
-
-    def get_followed_accounts(user):
-        accounts = Network.objects.filter(follower=user).all()
-        return [account.user for account in accounts]
-
-    def get_followers(user):
-        accounts = Network.objects.filter(user=user).all()
-        return [account.follower for account in accounts]
-    

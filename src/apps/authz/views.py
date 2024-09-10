@@ -19,7 +19,7 @@ class LoginView(APIView):
     def get(self, request, *args, **kwargs):
         # Fetch web page if not logged id
         if (request.user.is_anonymous):
-            return render(request, 'auth/login.html')
+            return render(request, 'auth_login.html')
         
         # Redirect if logged
         return redirect('/home/')
@@ -66,7 +66,7 @@ class RegisterView(APIView):
     def get(self, request, *args, **kwargs):
         # Fetch web page if not logged id
         if (request.user.is_anonymous):
-            return render(request, 'auth/register.html')
+            return render(request, 'auth_register.html')
         
         # Redirect if logged
         return redirect('/home/')
