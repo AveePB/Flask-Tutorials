@@ -1,0 +1,53 @@
+/* Profile Container */
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar Section */
+.avatar-section {
+    margin-bottom: 20px;
+}
+
+.avatar-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #d1a94f; /* Curry color */
+}
+
+/* User Info */
+.username {
+    color: #063063;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.bio {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 30px;
+}
+
+/* Message Button */
+.message-btn {
+    background-color: #063063; /* Dark blue */
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.message-btn:hover {
+    background-color: #000; /* Black on hover */
+}
