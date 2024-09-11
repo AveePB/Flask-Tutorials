@@ -17,5 +17,30 @@
         </form>
         <div id="bio-message-box" class="message-box"></div>
     </div>
+
+    <div class="skills-container">
+        <!-- Form to add a new skill -->
+        <div class="form-section">
+            <h2>Add New Skill</h2>
+            <form id="skill-form" class="form-container" action="/accounts/skills/" method="POST" data-message-box="skill-message-box" autocomplete="off">
+                <label for="skill-name">Skill Name:</label>
+                <input type="text" id="skill-name" name="skill_name" required>
+                <input type="submit" value="Add Skill">
+            </form>
+            <div id="skill-message-box" class="message-box"></div>
+        </div>
+    
+        <!-- List of current skills -->
+        <div class="skills-list-section">
+            <h2>Current Skills</h2>
+            <ul id="skills-list">
+                {% for skill in skills %}
+                <li> {{ skill.name }} 
+                    <button class="delete-btn" data-url="/accounts/skills/{{skill.uuid}}/" data-message-box="skill-message-box">Delete</button>                
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock %}

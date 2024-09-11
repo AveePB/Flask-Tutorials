@@ -272,3 +272,30 @@ input[type="submit"]:hover {
 #bio:focus {
   border-color: #007bff; /* Change border color on focus */
 }
+
+/* Styling for skills */
+.skills-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.skills-list-section {
+  width: 45%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skills-list-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.skills-list-section ul li {
+  padding: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}

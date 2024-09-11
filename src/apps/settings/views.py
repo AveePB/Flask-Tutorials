@@ -5,7 +5,7 @@ from django.db import IntegrityError
 from django.shortcuts import redirect, render
 from django.conf import settings
 
-from apps.accounts.models import User
+from apps.accounts.models import User, Skill
 
 # Create your views here.
 class SettingsView(APIView):
@@ -52,9 +52,10 @@ class ProfileDataView(APIView):
         if (request.user.is_anonymous):
             return redirect('/auth/login/')
         
-        # Get user avatar
+        # Get user data
         current_user = User.objects.get(id=request.user.id)
-
+        
         return render(request, 'settings_profile_data.html', {
             'current_bio': current_user.bio,
+            'skills': Skill.objects.filter(user=current_user),
         })

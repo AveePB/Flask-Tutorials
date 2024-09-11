@@ -126,9 +126,9 @@ class SkillsView(APIView):
             try:
                 new_skill = Skill(name=skill_name, user=user)
                 new_skill.save(force_insert=True)
-                return Response({'message': 'Skills successfully added.'}, status.HTTP_201_CREATED)
+                return Response({'message': 'Skill successfully added.'}, status.HTTP_201_CREATED)
             except IntegrityError:
-                return Response({'message': 'Skill cannot be added.'}, status.HTTP_400_BAD_REQUEST)
+                return Response({'message': 'Skill cannot be added (limit: 6).'}, status.HTTP_400_BAD_REQUEST)
 
         return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)            
 

@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     messageBox.classList.remove('success', 'error');
                     
                     // Add new class based on result status
-                    if (result.status === 204) {
+                    if (result.status === 204 || result.status == 201) {
                         messageBox.classList.add('success');
                         messageBox.innerHTML = result.message || 'Operation completed.';
                         setTimeout(() => {
