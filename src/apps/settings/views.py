@@ -43,3 +43,18 @@ class AccountDataView(APIView):
         return render(request, 'settings_account_data.html', {
             'current_username': current_user.username,
         })
+
+class ProfileDataView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        # Redirect to login page if not logged in
+        if (request.user.is_anonymous):
+            return redirect('/auth/login/')
+        
+        # Get user avatar
+        current_user = User.objects.get(id=request.user.id)
+
+        return render(request, 'settings_profile_data.html', {
+            'current_bio': current_user.bio,
+        })

@@ -1,0 +1,22 @@
+{% extends 'settings.html' %}
+
+{% block subhead %} 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'settings_profile_data.css' %}">
+{% endblock %}
+
+{% block settings_title %}Profile Data{% endblock %}
+
+{% block settings_content %} 
+<div class="settings-container">
+    <!-- Bio Form -->
+    <div class="form-section">
+        <h2>Update Bio</h2>
+        <form id="bio-form" class="form-container" action="/accounts/bio/" method="POST" data-message-box="bio-message-box" autocomplete="off">
+            <label for="bio">Bio:</label>
+            <textarea name="bio" placeholder="{{ current_bio }}" id="bio" required></textarea>
+            <input type="submit" value="Update Bio">
+        </form>
+        <div id="bio-message-box" class="message-box"></div>
+    </div>
+{% endblock %}
