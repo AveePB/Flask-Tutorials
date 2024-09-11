@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db import IntegrityError
 from django.db import models
 import uuid
 
@@ -52,4 +53,16 @@ class User(AbstractBaseUser):
 
     def __str__(self) -> str:
         return f"User<{self.username}>"
-    
+
+class Skill(models.Model):
+    user = models.ForeignKey(User, models.CASCADE, null=False)
+    name = models.TextField(max_length=32, null=False)
+    uuid = models.UUIDField(auto_created=True, default=uuid.uuid4, editable=False)
+
+    def save(self, *args, **kwargs):
+        # Ensure that the user does not exceed the limit of 6 skills
+        if (self.pk == None):  # Check if this is a new instance
+            user_skill_count = Skill.objects.filter(user=self.user).count()
+            if user_skill_count >= 6:
+                raise IntegrityError("You cannot have more than 6 skills.")
+        super().save(*args, **kwargs)

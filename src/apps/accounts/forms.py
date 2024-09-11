@@ -74,3 +74,15 @@ class BioForm(forms.Form):
             'required': 'Please enter your bio.'
         }
     )
+
+class SkillForm(forms.Form):
+    skill_name = forms.CharField(
+        min_length=2,
+        max_length=32,
+        required=True,
+        error_messages={
+            'required': 'Please enter the skill name.',
+            'min_length': 'Skill name must be at least 2 characters long.',
+            'max_length': 'Skill name cannot be longer than 32 characters.'
+        }
+    )
