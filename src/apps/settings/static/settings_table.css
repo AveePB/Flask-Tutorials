@@ -1,0 +1,214 @@
+/* General container styling */
+.table-container {
+    display: flex;
+    width: 80%; /* Adjust the width as needed */
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+a {
+  text-decoration: none;
+  color: white;
+}
+  
+  /* Left column (Menu) */
+  .left-column {
+    flex: 1; /* Take up 1 fraction of space */
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align buttons at the top */
+    border-right: 2px solid #ddd;
+  }
+  
+  /* Wrapper for the buttons to handle spacing */
+  .menu-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Empty div to stretch the blank space below buttons */
+  .blank-space {
+    flex-grow: 1; /* This will stretch to fill the remaining space */
+  }
+  
+  /* Styling for each menu item */
+  .menu-item {
+    background-color: #003366; /* Dark Blue background for other buttons */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 15px; /* Static space between buttons */
+  }
+  
+  /* Special styling for the Log out button */
+  .logout-button {
+    background-color: #ff4d4d; /* Red background for log out button */
+  }
+  
+  /* Remove the margin from the last button */
+  .menu-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Hover effect for menu items */
+  .menu-item:hover {
+    background-color: #00264d; /* Darker blue on hover */
+  }
+  
+  /* Hover effect for the Log out button */
+  .logout-button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+  }
+  
+  /* Right column (Content) */
+  .right-column {
+    flex: 3; /* Take up 3 fractions of space */
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+  }
+  
+  /* Title row */
+  .title-row {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* Content row */
+  .content-row {
+    flex-grow: 1; /* Ensures this row grows to fill the remaining space */
+    padding-top: 20px;
+    color: #555;
+    overflow-y: auto; /* Allow scrolling if content is long */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .table-container {
+      flex-direction: column; /* Stack columns on small screens */
+    }
+  
+    .left-column {
+      border-right: none;
+      border-bottom: 2px solid #ddd;
+    }
+  
+    .blank-space {
+      display: none; /* Hide the blank space when stacked */
+    }
+  }
+
+/* General container for settings */
+.settings-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #343a40;
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: calc(100% - 80px); /* Adjust width to accommodate button */
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.message-box {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.message-box.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.message-box.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Styles for password visibility toggle */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#new-password {
+  width: calc(100% - 50px); /* Adjust width to make space for button */
+}
+
+.toggle-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+  background-color: #0056b3;
+}
