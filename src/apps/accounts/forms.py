@@ -57,11 +57,11 @@ class PasswordForm(forms.Form):
         }
     )
 
-class AvatarForm(forms.Form):
+class ImageForm(forms.Form):
     file = forms.ImageField(
         required=True,
         error_messages={
-            'required': 'Please upload an avatar image.',
+            'required': 'Please upload an image.',
             'invalid_image': 'The uploaded file must be a valid image.'
         }
     )

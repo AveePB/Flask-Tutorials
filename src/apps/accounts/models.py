@@ -33,6 +33,7 @@ class User(AbstractBaseUser):
     uuid = models.UUIDField(auto_created=True, default=uuid.uuid4, editable=False)
 
     avatar = models.ImageField(upload_to='avatars', default=None, null=False)
+    background = models.ImageField(upload_to='backgrounds', default=None, null=False)
     bio = models.TextField(max_length=256, default="", null=False)
 
     # Boilerplate code
@@ -45,6 +46,22 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
+    def get_avatar_url(self):
+        if (self.avatar):
+            avatar_url = self.avatar.url
+        else:
+            avatar_url = '/media/avatars/default_avatar.png'
+
+        return avatar_url
+    
+    def get_background_url(self):
+        if (self.background):
+            background_url = self.background.url
+        else:
+            background_url = '/media/backgrounds/default_background.jpg'
+
+        return background_url
+
     def has_perm(self, perm, obj=None):
         return self.is_superuser
 
@@ -53,6 +70,7 @@ class User(AbstractBaseUser):
 
     def __str__(self) -> str:
         return f"User<{self.username}>"
+    
 
 class Skill(models.Model):
     user = models.ForeignKey(User, models.CASCADE, null=False)

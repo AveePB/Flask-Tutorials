@@ -55,7 +55,7 @@ class AvatarView(APIView):
             return Response({'message': 'Please upload exactly one image file.'}, status.HTTP_400_BAD_REQUEST)
 
         # Create and process form
-        form = AvatarForm(request.POST, files=request.FILES)
+        form = ImageForm(request.POST, files=request.FILES)
         if (form.is_valid()):
             avatar = form.cleaned_data['file']
             user = User.objects.get(id=request.user.id)
@@ -74,16 +74,45 @@ class AvatarView(APIView):
             return Response({'message': 'Avatar successfully uploaded.'}, status.HTTP_204_NO_CONTENT)
 
         return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)        
+    
+class BackgroundView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request, *args, **kwargs):
+        # Check if there more than one file
+        if (len(request.FILES) > 1):
+            return Response({'message': 'Please upload exactly one image file.'}, status.HTTP_400_BAD_REQUEST)
+
+        # Create and process form
+        form = ImageForm(request.POST, files=request.FILES)
+        if (form.is_valid()):
+            background = form.cleaned_data['file']
+            user = User.objects.get(id=request.user.id)
+            
+            # Delete previous background
+            if (user.background):
+                user.background.delete(save=False)
+            
+            # Generate custom name
+            ext = background.name.split('.')[-1]
+            new_filename = f"{uuid.uuid4().hex}.{ext}"
+            
+            # Try to change avatar
+            user.background.save(new_filename, background)
+            user.save(force_update=True)
+            return Response({'message': 'Background successfully uploaded.'}, status.HTTP_204_NO_CONTENT)
+
+        return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)   
 
     def delete(self, request, *args, **kwargs):
         # Get user data
         user = User.objects.get(id=request.user.id)
 
         # Delete current avatar
-        user.avatar.delete(save=False)
+        user.background.delete(save=False)
         user.save(force_update=True)
 
-        return Response({'message': 'Avatar successfully deleted.'}, status.HTTP_204_NO_CONTENT)         
+        return Response({'message': 'Background successfully deleted.'}, status.HTTP_204_NO_CONTENT)         
 
 class BioView(APIView):
     permission_classes = [IsAuthenticated]
