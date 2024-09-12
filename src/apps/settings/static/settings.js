@@ -136,3 +136,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+document.querySelectorAll('.menu-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const link = this.querySelector('a');
+        if (link) {
+            window.location.href = link.href;
+        }
+    });
+});

@@ -75,6 +75,16 @@ class AvatarView(APIView):
 
         return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)        
     
+    def delete(self, request, *args, **kwargs):
+        # Get user data
+        user = User.objects.get(id=request.user.id)
+
+        # Delete current avatar
+        user.avatar.delete()
+        user.save(force_update=True)
+
+        return Response({'message': 'Avatar successfully deleted.'}, status.HTTP_204_NO_CONTENT)         
+
 class BackgroundView(APIView):
     permission_classes = [IsAuthenticated]
     
@@ -108,8 +118,8 @@ class BackgroundView(APIView):
         # Get user data
         user = User.objects.get(id=request.user.id)
 
-        # Delete current avatar
-        user.background.delete(save=False)
+        # Delete current background
+        user.background.delete()
         user.save(force_update=True)
 
         return Response({'message': 'Background successfully deleted.'}, status.HTTP_204_NO_CONTENT)         

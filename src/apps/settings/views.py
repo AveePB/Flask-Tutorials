@@ -16,18 +16,7 @@ class SettingsView(APIView):
         if (request.user.is_anonymous):
             return redirect('/auth/login/')
 
-        # Get user avatar
-        current_user = User.objects.get(id=request.user.id)
-        
-        if (current_user.avatar):
-            avatar_url = current_user.avatar.url
-        else:
-            avatar_url = '/media/unknown.png'
-
-        return render(request, 'settings.html', {
-            'user': current_user, 
-            'avatar_url': avatar_url
-        })
+        return redirect('/settings/account-data/')
 
 class AccountDataView(APIView):
     permission_classes = [AllowAny]
@@ -58,4 +47,20 @@ class ProfileDataView(APIView):
         return render(request, 'settings_profile_data.html', {
             'current_bio': current_user.bio,
             'skills': Skill.objects.filter(user=current_user),
+        })
+    
+class ProfileImagesView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        # Redirect to login page if not logged in
+        if (request.user.is_anonymous):
+            return redirect('/auth/login/')
+        
+        # Get user data
+        current_user = User.objects.get(id=request.user.id)
+        
+        return render(request, 'settings_profile_images.html', {
+            'avatar_url': current_user.get_avatar_url(),
+            'background_url': current_user.get_background_url(),
         })
