@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}That's It - {{ user.username }}'s Profile{% endblock %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'profile_styles.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="profile-container">
+    <!-- Background Section -->
+    <div class="background-container">
+        <img src="{{ background_url }}" alt="Profile Background" class="background-image">
+    </div>
+
+    <!-- Avatar and User Info Section -->
+    <div class="user-info">
+        <div class="avatar-container">
+            <img src="{{ avatar_url }}" alt="User Avatar" class="avatar-image">
+        </div>
+        <div class="username-section">
+            <h1>{{ user.username }}</h1>
+            <button class="follow-btn">Follow</button>
+        </div>
+    </div>
+
+    <!-- Table with Bio and Skills Section -->
+    <div class="profile-details">
+        <table class="bio-skills-table">
+            <tr>
+                <!-- Bio Section (First Column) -->
+                <td class="bio-section">
+                    <h2>Bio</h2>
+                    <p>{{ user.bio }}</p>
+                </td>
+                <!-- Skills Section (Second Column) -->
+                <td class="skills-section">
+                    <h2>Skills</h2>
+                    <ul class="skills-list">
+                        {% for skill in skills %}
+                        <li>{{ skill.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

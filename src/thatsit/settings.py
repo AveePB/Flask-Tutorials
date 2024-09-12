@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.authz",
     "apps.settings",
+    "apps.profiles",
 ]
 
 MIDDLEWARE = [
