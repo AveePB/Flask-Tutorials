@@ -21,7 +21,12 @@
         </div>
         <div class="username-section">
             <h1>{{ user.username }}</h1>
-            <button class="follow-btn">Follow</button>
+            
+            {% if is_following and not is_own_profile %}
+                <button id="following-btn" username="{{ user.username }}" class="follow-btn">Following</button>
+            {% elif not is_own_profile %}
+                <button id="follow-btn" username="{{ user.username }}" class="follow-btn">Follow</button>
+            {% endif %}
         </div>
     </div>
 
@@ -47,4 +52,7 @@
         </table>
     </div>
 </div>
+
+{% load static %}
+<script src="{% static 'profile_scripts.js' %}"></script>
 {% endblock %}
