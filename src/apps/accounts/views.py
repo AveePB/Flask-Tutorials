@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db import IntegrityError
 
-from apps.accounts.models import User, Skill
+from apps.accounts.models import *
 from apps.accounts.forms import *
 import uuid
 
@@ -29,6 +29,7 @@ class UsernameView(APIView):
 
         return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)            
 
+
 class PasswordView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -45,7 +46,8 @@ class PasswordView(APIView):
             return Response({'message': 'Password successfully updated.'}, status.HTTP_204_NO_CONTENT)
 
         return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)        
-    
+
+
 class AvatarView(APIView):
     permission_classes = [IsAuthenticated]
     
@@ -84,6 +86,7 @@ class AvatarView(APIView):
         user.save(force_update=True)
 
         return Response({'message': 'Avatar successfully deleted.'}, status.HTTP_204_NO_CONTENT)         
+
 
 class BackgroundView(APIView):
     permission_classes = [IsAuthenticated]
@@ -124,6 +127,7 @@ class BackgroundView(APIView):
 
         return Response({'message': 'Background successfully deleted.'}, status.HTTP_204_NO_CONTENT)         
 
+
 class BioView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -151,6 +155,7 @@ class BioView(APIView):
 
         return Response({'message': 'Bio successfully deleted.'}, status.HTTP_204_NO_CONTENT)       
 
+
 class SkillsView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -171,6 +176,7 @@ class SkillsView(APIView):
 
         return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)            
 
+
 class DeleteSkillsView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -184,3 +190,49 @@ class DeleteSkillsView(APIView):
         except Skill.DoesNotExist:
             return Response({'message': 'There was no such skill.'}, status.HTTP_204_NO_CONTENT)
 
+
+class FollowView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        form = UsernameForm(request.POST)
+        if (form.is_valid()):
+            follower = User.objects.get(id=request.user.id)
+            username = form.cleaned_data['username']
+
+            try:
+                # Start following a user
+                user = User.objects.get(username=username)
+                follow = Follow(user=user, follower=follower)
+                follow.save(force_insert=True)
+                return Response({'message': 'Successfully started following.'}, status.HTTP_201_CREATED)
+            
+            except ValidationError:
+                return Response({'message': 'You cannot follow yourself.'}, status.HTTP_403_FORBIDDEN)
+
+            except IntegrityError:
+                return Response({'message': 'You already follow that user.'}, status.HTTP_204_NO_CONTENT)
+            
+            except User.DoesNotExist:
+                return Response({'message': 'User doesn\'t exist.'}, status.HTTP_404_NOT_FOUND)
+
+        return Response({'message': form.errors.as_text()}, status.HTTP_400_BAD_REQUEST)
+    
+
+class UnFollowView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, username):
+        follower = User.objects.get(id=request.user.id)
+
+        try:
+            user = User.objects.get(username=username)
+            follow = Follow.objects.get(follower=follower, user=user)
+            follow.delete()
+            return Response({'message': 'You stopped following that user'}, status.HTTP_204_NO_CONTENT)
+        
+        except User.DoesNotExist:
+            return Response({'message': 'User doesn\'t exist.'}, status.HTTP_204_NO_CONTENT)
+        
+        except Follow.DoesNotExist:
+            return Response({'message': 'You didn\'t follow that user.'}, status.HTTP_204_NO_CONTENT)

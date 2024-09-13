@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.db import models
 import uuid
@@ -22,6 +23,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(username, password, **extra_fields)
+
 
 class User(AbstractBaseUser):
     # Key credentials
@@ -74,8 +76,11 @@ class User(AbstractBaseUser):
 
 class Skill(models.Model):
     user = models.ForeignKey(User, models.CASCADE, null=False)
-    name = models.TextField(max_length=32, null=False)
+    name = models.CharField(max_length=32, null=False)
     uuid = models.UUIDField(auto_created=True, default=uuid.uuid4, editable=False)
+
+    class Meta:
+        unique_together = ('user', 'name')
 
     def save(self, *args, **kwargs):
         # Ensure that the user does not exceed the limit of 6 skills
@@ -84,3 +89,25 @@ class Skill(models.Model):
             if user_skill_count >= 6:
                 raise IntegrityError("You cannot have more than 6 skills.")
         super().save(*args, **kwargs)
+
+
+class Follow(models.Model):
+    user = models.ForeignKey(User, related_name='following', on_delete=models.CASCADE)
+    follower = models.ForeignKey(User, related_name='followers', on_delete=models.CASCADE)
+
+    uuid = models.UUIDField(auto_created=True, default=uuid.uuid4, editable=False)
+    followed_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'follower') 
+
+    def clean(self):
+        if self.user == self.follower:
+            raise ValidationError("You cannot follow yourself.")
+
+    def save(self, *args, **kwargs):
+        self.clean()  # Ensure that clean method is called
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.follower.username} follows {self.user.username}"
