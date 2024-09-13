@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         followBtn.addEventListener('click', function() {
             // Prepare data
             const username = followBtn.getAttribute('username');
-            const url = '/accounts/follow/';
+            const url = '/networks/follow/';
 
             const formData = new FormData();
             formData.append('username', username);
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         followingBtn.addEventListener('click', function() {
             // Prepare data
             const username = followingBtn.getAttribute('username');
-            const url = `/accounts/unfollow/${username}/`
+            const url = `/networks/unfollow/${username}/`
 
             // Send request
             fetch(url, {

@@ -6,7 +6,8 @@ from django.db import IntegrityError
 from django.shortcuts import redirect, render
 from django.conf import settings
 
-from apps.accounts.models import *
+from apps.accounts.models import User, Skill
+from apps.networks.models import Follow
 
 # Create your views here.
 class ProfileRedirectView(APIView):

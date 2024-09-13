@@ -11,7 +11,4 @@ urlpatterns = [
     
     path('skills/', SkillsView.as_view(), name='skills'),
     path('skills/<str:skill_uuid>/', DeleteSkillsView.as_view(), name='delete_skills'),
-    
-    path('follow/', FollowView.as_view(), name='follow'),
-    path('unfollow/<str:username>/', UnFollowView.as_view(), name='unfollow'),
 ]
