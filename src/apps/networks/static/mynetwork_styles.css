@@ -1,0 +1,106 @@
+/* Main rounded container */
+.rounded-container {
+    width: 80%; /* Adjust to fit your layout */
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 25px;
+    background-color: #f0f0f0; /* Container background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for the container */
+    border: 2px solid #1c3d63; /* Dark blue accent border */
+}
+
+/* Styling for the main table */
+.main-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main-table table {
+    width: 100%;
+    text-align: left;
+    border: none; /* Remove borders from the main table */
+}
+
+.main-table th, .main-table td {
+    padding: 15px;
+    background-color: #fff; /* Background color for table cells */
+    border: 1px solid #1c3d63; /* Dark blue accent for borders */
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Scrollable tables inside the main table */
+.scrollable-table {
+    max-height: 200px; /* Adjust height based on your layout */
+    overflow-y: auto;
+}
+
+.scrollable-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scrollable-table td {
+    padding: 10px;
+    border: 1px solid #1c3d63; /* Dark blue borders for inner cells */
+    background-color: #fafafa; /* Light background for rows */
+}
+
+/* Styling for the avatar image */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Rounds the image */
+    margin-right: 10px;
+    vertical-align: middle; /* Aligns with the text */
+}
+
+/* Scrollbar customization (optional) */
+.scrollable-table::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+    background-color: #1c3d63; /* Dark blue scrollbar thumb */
+    border-radius: 10px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb:hover {
+    background-color: #0f2944; /* Darker blue on hover */
+}
+
+/* Optional styling for table headers */
+.main-table th {
+    background-color: #1c3d63; /* Dark blue background for headers */
+    color: white; /* White text for contrast */
+    font-weight: bold;
+    border-bottom: 2px solid #1c3d63; /* Dark blue border */
+}
+
+/* Optional hover effect for table rows */
+.scrollable-table td:hover {
+    background-color: #dce4f2; /* Light blue hover effect */
+}
+
+/* Styling for the anchor link */
+.username-link {
+    text-decoration: none; /* Remove underline */
+    color: #1c3d63; /* Dark blue color for the link */
+    font-weight: bold;
+}
+
+.username-link:hover {
+    color: #0f2944; /* Darker blue on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Styling for the avatar and alignment */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Rounds the image */
+    margin-right: 10px;
+    vertical-align: middle; /* Aligns the avatar with the text */
+}
+
+/* Other styles remain unchanged */

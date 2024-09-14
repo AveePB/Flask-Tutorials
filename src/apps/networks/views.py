@@ -4,13 +4,29 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db import IntegrityError
 from django.core.exceptions import ValidationError
+from django.shortcuts import redirect, render
 
 from apps.accounts.models import User
 from apps.accounts.forms import *
 from apps.networks.models import Follow
-import uuid
 
 # Create your views here.
+class MyNetworkView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        # Fetch required data
+        current_user = User.objects.get(id=request.user.id)
+        following = [f.user for f in Follow.objects.filter(follower=current_user)]
+        followers = [f.follower for f in Follow.objects.filter(user=current_user)]
+
+        return render(request, 'mynetwork.html', context={
+            'user': current_user,
+            'following': following,
+            'followers': followers,
+        })
+
+
 class FollowView(APIView):
     permission_classes = [IsAuthenticated]
 

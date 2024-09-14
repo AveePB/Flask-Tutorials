@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} My Network {% endblock %}
+    
+{% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mynetwork_styles.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="rounded-container">
+    <table class="main-table">
+        <tr>
+            <th>People I Follow</th>
+            <th>My Followers</th>
+        </tr>
+        <tr>
+            <td>
+                <div class="scrollable-table">
+                    <table>
+                        {% for user in following %}
+                        <tr>
+                            <td>
+                                <img src="{{ user.get_avatar_url }}" alt="Avatar" class="avatar">
+                                <a href="/profiles/{{ user.uuid }}/" class="username-link">{{ user.username }}</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                            You don't follow anyone.
+                        {% endfor %}
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div class="scrollable-table">
+                    <table>
+                        {% for user in followers %}
+                        <tr>
+                            <td>
+                                <img src="{{ user.get_avatar_url }}" alt="Avatar" class="avatar">
+                                <a href="/profiles/{{ user.uuid }}/" class="username-link">{{ user.username }}</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                            You have no followers.
+                        {% endfor %}
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}
