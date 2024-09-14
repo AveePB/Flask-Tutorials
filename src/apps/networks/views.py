@@ -17,8 +17,8 @@ class MyNetworkView(APIView):
     def get(self, request, *args, **kwargs):
         # Fetch required data
         current_user = User.objects.get(id=request.user.id)
-        following = [f.user for f in Follow.objects.filter(follower=current_user)]
-        followers = [f.follower for f in Follow.objects.filter(user=current_user)]
+        following = [f.user for f in Follow.objects.filter(follower=current_user).order_by('user__username')]
+        followers = [f.follower for f in Follow.objects.filter(user=current_user).order_by('follower__username')]
 
         return render(request, 'mynetwork.html', context={
             'user': current_user,
